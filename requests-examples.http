@@ -1,0 +1,258 @@
+# примеры API-запросов
+
+@baseUrl = http://127.0.0.1:8000/api/v1
+
+
+###User###
+
+# register user
+POST {{baseUrl}}/user/register
+Content-Type: application/json
+
+{
+	"first_name": "Аркадий3",
+	"last_name": "Паравозов3",
+	"email": "arkadiy3@test.ru",
+	"password": "arkadiy123456789",
+	"company": "РЖД",
+	"position": "Начальник"
+}
+
+###
+
+# подтвердить email
+POST {{baseUrl}}/user/register/confirm
+Content-Type: application/json
+
+{
+	"email": "arkadiy3@test.ru",
+	"token": "gdfwsg46324t2323423tgfawehyg"
+}
+
+###
+
+# get contacts
+GET {{baseUrl}}/user/contact
+Content-Type: application/json
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+###
+
+# create contacts
+POST {{baseUrl}}/user/contact
+Content-Type: application/json
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+{
+	"city": "Almaty",
+	"street": "Shashkin street 40",
+	"house": "Apartament 28",
+	"structure": "123",
+	"building": "123",
+	"apartment": "123",
+	"phone": "+49564563242"
+}
+
+###
+
+# редактировать контакты
+PUT {{baseUrl}}/user/contact
+Content-Type: application/json
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+{
+	"city": "Almaty",
+	"street": "Shashkin street 41",
+	"house": "Apartament 28",
+	"structure": "123",
+	"building": "123",
+	"apartment": "123",
+	"id": "2",
+	"phone": "+49564563242"
+}
+
+###
+
+# удалить контакты
+DELETE {{baseUrl}}/user/contact
+Content-Type: application/x-www-form-urlencoded
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+items=1,2,3
+
+###
+
+# edit user
+POST {{baseUrl}}/user/details
+Content-Type: application/json
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+{
+	"first_name": "Аркадий4",
+	"last_name": "Паравозов3",
+	"email": "arkadiy3@test.ru",
+	"password": "arkadiy123456789",
+	"company": "РЖД",
+	"position": "Начальник"
+}
+
+
+###
+
+# login user
+POST {{baseUrl}}/user/login
+Content-Type: application/json
+
+{
+	"email": "arkadiy3@test.ru",
+	"password": "arkadiy123456789"
+}
+
+###
+
+# password_reset
+POST {{baseUrl}}/user/password_reset
+Content-Type: application/json
+
+{
+	"email": "arkadiy3@test.ru"
+}
+
+###
+
+# password_reset/confirm
+POST {{baseUrl}}/user/password_reset/confirm
+Content-Type: application/json
+
+{
+	"email": "arkadiy3@test.ru",
+	"password": "arkadiy123456789",
+	"token": "268330bc7510ef8f072222678e84e26f59be23fd"
+}
+
+###
+
+###Shop###
+
+# list shops
+GET {{baseUrl}}/shops
+Content-Type: application/json
+
+###
+
+# искать товары
+GET {{baseUrl}}/products?shop_id=1&category_id=224
+Content-Type: application/json
+
+###
+
+# добавить товары в корзину
+POST {{baseUrl}}/basket
+Content-Type: application/json
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+{"items": [
+	{
+		"product_info":  1,
+		"quantity": 1
+		
+	},
+	{
+		"product_info":  2,
+		"quantity": 1
+		
+	}
+]}
+
+###
+
+# редактировать количество товаров в корзине
+PUT {{baseUrl}}/basket
+Content-Type: application/json
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+{"items": [
+	{
+		"id":  4,
+		"quantity": 2
+		
+	},
+	{
+		"id":  5,
+		"quantity": 2
+		
+	}
+]}
+
+###
+
+# удалить из корзины
+DELETE {{baseUrl}}/basket
+Content-Type: application/x-www-form-urlencoded
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+items=6,7
+
+###
+
+# получить содержимое корзины
+GET {{baseUrl}}/basket
+Content-Type: application/x-www-form-urlencoded
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+###
+
+
+# получить мои заказы
+GET {{baseUrl}}/order
+Content-Type: application/x-www-form-urlencoded
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+###
+
+# разместить заказ
+POST {{baseUrl}}/order
+Content-Type: application/json
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+{
+	"id": "1",
+	"contact": "1"
+}
+
+###
+
+# list categories
+GET {{baseUrl}}/categories
+
+###
+
+
+###Partner###
+
+# обновить прайс партнера
+POST {{baseUrl}}/partner/update
+Content-Type: application/x-www-form-urlencoded
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+url=https://raw.githubusercontent.com/netology-code/pd-diplom/master/data/shop1.yaml
+
+###
+
+# получить статус партнера
+GET {{baseUrl}}/partner/state
+Content-Type: application/x-www-form-urlencoded
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+url=https://raw.githubusercontent.com/netology-code/pd-diplom/master/data/shop1.yaml
+
+###
+
+# получить сформированные заказы
+GET {{baseUrl}}/partner/orders
+Content-Type: application/x-www-form-urlencoded
+Authorization: Token 268330bc7510ef8f072222678e84e26f59be23fd
+
+url=https://raw.githubusercontent.com/netology-code/pd-diplom/master/data/shop1.yaml
+
+###
