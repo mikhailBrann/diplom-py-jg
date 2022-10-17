@@ -16,11 +16,11 @@ from drf_spectacular.utils import extend_schema
 from ujson import loads as load_json
 from yaml import load as load_yaml, Loader
 
-from .models import Shop, Category, Product, ProductInfo, Parameter, ProductParameter, Order, OrderItem, \
+from models import Shop, Category, Product, ProductInfo, Parameter, ProductParameter, Order, OrderItem, \
     Contact, ConfirmEmailToken, User
-from .serializers import UserSerializer, CategorySerializer, ShopSerializer, ProductInfoSerializer, \
+from serializers import UserSerializer, CategorySerializer, ShopSerializer, ProductInfoSerializer, \
     OrderItemSerializer, OrderSerializer, ContactSerializer
-from .tasks import new_user_registered_email, new_order_email
+from tasks import new_user_registered_email, new_order_email
 
 
 class RegisterAccount(APIView):

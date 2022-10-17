@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from __future__ import absolute_import
 import os
 from pathlib import Path
-from .celery import app as celery_app
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
