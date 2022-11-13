@@ -36,7 +36,7 @@ services:
 
   celery:
     build: ./orders
-    command: celery -A orders worker -l info
+    command: celery --app orders.orders worker -l info
     volumes:
       - ./:/usr/src/app/
     env_file:
@@ -44,15 +44,15 @@ services:
     depends_on:
       - redis
 
-  celery-beat:
-    build: ./orders
-    command: celery -A orders beat -l info
-    volumes:
-      - ./:/usr/src/app/
-    env_file:
-      - .env
-    depends_on:
-      - redis
+#  celery-beat:
+#    build: ./orders
+#    command: celery --app orders.orders beat -l info
+#    volumes:
+#      - ./:/usr/src/app/
+#    env_file:
+#      - .env
+#    depends_on:
+#      - redis
 
 volumes:
   static_volume:

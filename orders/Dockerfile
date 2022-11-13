@@ -1,9 +1,9 @@
-FROM python:3.7-alpine
+FROM python:3.8-alpine
 # set work directory
 WORKDIR ./orders
 # copy project
 COPY ./ ./orders/
 
 RUN cd ./orders
-RUN pip install --upgrade pip
-RUN pip install -r ./orders/requirements.txt
+RUN pip3 install --upgrade pip
+RUN pip3 install -r ./orders/requirements.txt
